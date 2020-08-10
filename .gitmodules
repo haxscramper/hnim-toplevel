@@ -1,0 +1,24 @@
+[submodule "hasts"]
+	path = hasts
+	url = https://github.com/haxscramper/hasts.git
+[submodule "hmisc"]
+	path = hmisc
+	url = https://github.com/haxscramper/hmisc.git
+[submodule "hparse"]
+	path = hparse
+	url = https://github.com/haxscramper/hparse.git
+[submodule "ngspice"]
+	path = ngspice
+	url = https://github.com/haxscramper/ngspice.git
+[submodule "nimtrs"]
+	path = nimtrs
+	url = https://github.com/haxscramper/nimtrs.git
+[submodule "nimproj"]
+	path = nimproj
+	url = https://github.com/haxscramper/nimproj.git
+[submodule "hdrawing"]
+	path = hdrawing
+	url = https://github.com/haxscramper/hdrawing.git
+[submodule "hpprint"]
+	path = hpprint
+	url = https://github.com/haxscramper/hpprint.git
