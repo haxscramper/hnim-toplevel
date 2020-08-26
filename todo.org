@@ -1,0 +1,13 @@
+* Parsing
+
+- [ ] Uniform naming for parsing and TRS constructor functions
+
+* Library integration
+
+- [ ] Term implementation for parse tree and ast types from =hasts=
+  (where applicable)
+
+* Documentation & maintenance
+
+- [ ] Automatically generate documentation for all libraries and host
+  it using github pages.
