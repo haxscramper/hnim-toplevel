@@ -49,3 +49,6 @@
 [submodule "hcparse-doc"]
 	path = hcparse-doc
 	url = https://github.com/haxscramper/hcparse-doc.git
+[submodule "hnimast-doc"]
+	path = hnimast-doc
+	url = https://github.com/haxscramper/hnimast-doc.git
