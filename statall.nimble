@@ -96,5 +96,8 @@ task docall, "Generate documentation for all subdirectories":
       echo "done".toGreen()
 
 task test, "Test task":
-  for i in 0 .. system.paramCount():
-    echo system.paramStr(i)
+  for subm in subdirs.onlyDocs():
+    let url = &"https://github.com/haxscramper/{subm}.git"
+    shell:
+      "git rm --cached" ($subm)
+      "git submodule add" ($url) ($subm)

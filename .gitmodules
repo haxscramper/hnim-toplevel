@@ -22,3 +22,30 @@
 [submodule "hpprint"]
 	path = hpprint
 	url = https://github.com/haxscramper/hpprint.git
+[submodule "hpprint-doc"]
+	path = hpprint-doc
+	url = https://github.com/haxscramper/hpprint-doc.git
+[submodule "hparse-doc"]
+	path = hparse-doc
+	url = https://github.com/haxscramper/hparse-doc.git
+[submodule "hmisc-doc"]
+	path = hmisc-doc
+	url = https://github.com/haxscramper/hmisc-doc.git
+[submodule "nimtrs-doc"]
+	path = nimtrs-doc
+	url = https://github.com/haxscramper/nimtrs-doc.git
+[submodule "hdrawing-doc"]
+	path = hdrawing-doc
+	url = https://github.com/haxscramper/hdrawing-doc.git
+[submodule "ngspice-doc"]
+	path = ngspice-doc
+	url = https://github.com/haxscramper/ngspice-doc.git
+[submodule "hasts-doc"]
+	path = hasts-doc
+	url = https://github.com/haxscramper/hasts-doc.git
+[submodule "nimtraits-doc"]
+	path = nimtraits-doc
+	url = https://github.com/haxscramper/nimtraits-doc.git
+[submodule "hcparse-doc"]
+	path = hcparse-doc
+	url = https://github.com/haxscramper/hcparse-doc.git
