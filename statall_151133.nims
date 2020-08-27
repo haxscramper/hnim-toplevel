@@ -1,3 +1,8 @@
+import system except getCommand, setCommand, switch, `--`,
+  packageName, version, author, description, license, srcDir, binDir, backend,
+  skipDirs, skipFiles, skipExt, installDirs, installFiles, installExt, bin, foreignDeps,
+  requires, task, packageName
+import nimscriptapi, strutils
 # Package
 
 version       = "0.2.28"
@@ -48,11 +53,8 @@ task statall, "Get git statistics for all subdirs":
       let (output, error, code) = shellVerboseErr noShell:
         ($gitcmd) status -s
 
-      let (branch, _, _) = shellVerboseErr noShell:
-        git branch "--show-current"
-
       if output.len == 0:
-        echo branch.toYellow(), " ", dir.toGreen(), " no changes"
+        echo dir.toGreen(), " no changes"
       else:
         echo dir.toGreen()
         echo output
@@ -78,41 +80,30 @@ task testall, "Run tests for all subdirectories":
       if code != 0:
         echo "tests in ", dir.toRed(), " failed"
 
-proc docDir(dir: string) =
-  let topdir = cwd()
-  let release = true
-  withDir dir:
-    let outdir = topdir / (dir & "-doc")
-    let url =
-      if release:
-         &"https://haxscramper.github.io/{dir}-doc"
-      else:
-        outdir
-
-    echo &"{dir} -> {outdir}"
-    docgenBuild(
-      url, outdir,
-      nimdocCss = topdir / "nimdoc.css",
-      build = true
-    )
-    echo "done".toGreen()
-
-
 task docall, "Generate documentation for all subdirectories":
+  let topdir = cwd()
+  let release = false
   for dir in subdirs:
-    if not dir.startsWith("hcparse"):
-      docDir(dir)
-
-
-task docone, "Generate documentation for on subdirectory":
-  docDir("hasts")
-
-task commitdocs, "Commit all documentation changes":
-  for dir in subdirs.onlyDocs():
     withDir dir:
-      shell:
-        "git add ."
-        "git commit -m \"[DOC] documentation update\""
+      let outdir = topdir / (dir & "-doc")
+      let url =
+        if release:
+           &"https://haxscramper.github.io/{dir}-doc"
+        else:
+          outdir
+
+      echo &"{dir} -> {outdir}"
+      docgenBuild(
+        url, outdir,
+        nimdocCss = topdir / "nimdoc.css",
+        build = true
+      )
+      echo "done".toGreen()
+
+# task commitdocs, "Commit all documentation changes":
+#   for
 
 task test, "Test task":
   discard
+
+onExit()
