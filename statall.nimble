@@ -58,7 +58,7 @@ task statall, "Get git statistics for all subdirs":
         echo output
 
 task pushall, "Push all commited changes to all repositories":
-  for dir in subdirs:
+  for dir in subdirs.withDocs():
     withDir dir:
       let (output, error, code) = shellVerboseErr noShell:
         ($gitcmd) push --all
@@ -76,7 +76,9 @@ task testall, "Run tests for all subdirectories":
         nimble test
 
       if code != 0:
-        echo "tests in ", dir.toRed(), " failed"
+        echo dir.toRed(), " failed"
+      else:
+        echo dir.toGreen(), " ok"
 
 proc docDir(dir: string) =
   let topdir = cwd()
@@ -105,7 +107,7 @@ task docall, "Generate documentation for all subdirectories":
 
 
 task docone, "Generate documentation for on subdirectory":
-  docDir("hasts")
+  docDir("ngspice")
 
 task commitdocs, "Commit all documentation changes":
   for dir in subdirs.onlyDocs():
