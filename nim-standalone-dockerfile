@@ -1,0 +1,24 @@
+
+
+FROM debian
+
+RUN apt-get -y --force-yes update
+RUN apt-get -y --force-yes install gcc g++ curl wget git sudo
+RUN adduser --disabled-password --gecos "" docker-user
+RUN usermod -aG sudo docker-user
+RUN echo "docker-user:docker-password" | chpasswd
+
+
+FROM debian-base
+
+USER docker-user
+WORKDIR /home/docker-user
+
+RUN curl https://nim-lang.org/choosenim/init.sh -sSf > init.sh
+RUN sh init.sh -y
+ENV PATH "/home/docker-user/.nimble/bin:${PATH}"
+ARG CACHEBUST=1
+
+RUN nimble refresh
+RUN nimble install --reject with macroutils shell
+CMD sh

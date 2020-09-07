@@ -1,3 +1,20 @@
 [[file:readme.png]]
 
-No idea why I though it is a good thing to do.
+This repository mostly contains toplevel meta configuration & files
+that are used to create environment for various projects.
+
+* Documentation
+
+* Running tests
+
+Most nimble files in projects implement several additional tasks for
+testing using docker:
+
+- ~dockertestDevel~ - Run tests in docker container but with WIP
+  versions of locall packages. If I'm working on something and want to
+  test if it will work in clean environment but with *my local edits
+  to dependencies* I use it.
+- ~dockertest~ - Clean test run in docker container
+- ~installTest~ - Test installation from the repository
+- ~testall~ - run test suite on devel & stable nim compiler + test
+  installation.

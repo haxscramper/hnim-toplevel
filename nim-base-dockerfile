@@ -1,0 +1,25 @@
+# Debian-based environment for nim development with some backages
+# installed.
+
+# NOTE based on `debian-base` image
+# `docker build -t nim-base -f nim-base-dockerfile .`
+
+FROM debian-base
+
+USER docker-user
+WORKDIR /home/docker-user
+
+RUN curl https://nim-lang.org/choosenim/init.sh -sSf > init.sh
+RUN sh init.sh -y
+ENV PATH "/home/docker-user/.nimble/bin:${PATH}"
+# Optional support for disabling caching for nimble install
+ARG CACHEBUST=1
+
+RUN nimble refresh
+# Add dependencies to image to avoid redownloading each time
+RUN nimble install --reject with macroutils shell compiler
+
+# Install both development and stable versions
+RUN choosenim devel
+RUN choosenim stable
+CMD sh

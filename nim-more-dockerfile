@@ -1,0 +1,7 @@
+##
+
+FROM nim-base
+RUN git clone https://github.com/disruptek/nimph
+WORKDIR /home/docker-user/nimph
+RUN ./bootstrap.sh
+ENV PATH "/home/docker-user/nimph:${PATH}"

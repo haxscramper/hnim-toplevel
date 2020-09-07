@@ -1,0 +1,13 @@
+# Create debian-based docker image with sudo-enabled user
+# `docker-user` (password is `docker-password`) and some basic
+# packages installed.
+
+# `docker build -t debian-base -f debian-base-dockerfile .`
+
+FROM debian
+
+RUN apt-get -y --force-yes update
+RUN apt-get -y --force-yes install gcc g++ curl wget git sudo
+RUN adduser --disabled-password --gecos "" docker-user
+RUN usermod -aG sudo docker-user
+RUN echo "docker-user:docker-password" | chpasswd
