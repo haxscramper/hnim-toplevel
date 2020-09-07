@@ -18,3 +18,18 @@ testing using docker:
 - ~installTest~ - Test installation from the repository
 - ~testall~ - run test suite on devel & stable nim compiler + test
   installation.
+
+To create docker image for tests run ~make nim-base~ - it will
+generate correctly named debian-based image with all necessary
+packages & nim tools installed.
+
+* Toplevel
+
+Toplevel nimble file implements several maintenance tasks for
+generating & comitting documentation changes, runnning tests etc.
+
+- ~statall~ print git statistics for all subdirectories
+- ~pushall~ push all commited changs to all repositories
+- ~testall~ run test for all subdirectories
+- ~docall~ generate documentation for all modules
+- ~commitdocs~ commit documentation changes
