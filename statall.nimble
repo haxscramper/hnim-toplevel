@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.2.28"
+version       = "0.2.29"
 author        = "haxscramper"
 description   = "Toplevel package"
 license       = "Apache-2.0"
@@ -57,17 +57,25 @@ task statall, "Get git statistics for all subdirs":
         echo dir.toGreen()
         echo output
 
-task pushall, "Push all commited changes to all repositories":
-  for dir in subdirs.withDocs():
-    withDir dir:
-      let (output, error, code) = shellVerboseErr noShell:
+proc pushdir(dir: string): void =
+  withDir dir:
+    let (output, error, code) = shellVerboseErr noShell:
         ($gitcmd) push --all
 
-      if code == 0:
-        echo dir.toGreen(), " done"
-      else:
-        echo dir.toRed(), " error"
-        echo error
+    if code == 0:
+      echo dir.toGreen(), " done"
+    else:
+      echo dir.toRed(), " error"
+      echo error
+
+
+task pushdocs, "Push all documentation changes to repositories":
+  for dir in subdirs.onlyDocs():
+    pushDir(dir)
+
+task pushall, "Push all commited changes to all repositories":
+  for dir in subdirs.withDocs():
+    pushDir(dir)
 
 task testall, "Run tests for all subdirectories":
   for dir in subdirs:
@@ -107,7 +115,7 @@ task docall, "Generate documentation for all subdirectories":
 
 
 task docone, "Generate documentation for on subdirectory":
-  docDir("ngspice")
+  docDir("hmisc")
 
 task commitdocs, "Commit all documentation changes":
   for dir in subdirs.onlyDocs():
